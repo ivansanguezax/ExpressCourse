@@ -39,8 +39,8 @@
 // ------------------------------------------
 
 const express = require("express");
-const { type } = require("os");
 const app = express();
+const morgan = require("morgan");
 
 // app.get('/products', (req, res) =>{
 //     //query database
@@ -186,14 +186,34 @@ const app = express();
 //     // Llama a la siguiente función en la cadena de middleware
 //     next();
 // })
-// app.get('/profile', (req, res) =>{
-//     res.send('Profile');
-// });
 
 
-// app.all('/about', (req, res) =>{
-//     res.send('about page');
-// });
+app.use(morgan('dev'));
+
+app.get('/profile', (req, res) =>{
+    res.send('Profile');
+});
+app.all('/about', (req, res) =>{
+    res.send('about page');
+});
+
+
+app.use((req, res, next)=>{
+    if(req.query.login === 'ivan@gmail.com'){
+        next();
+    }else {
+        res.send('No tienes permiso para acceder');
+    }
+})
+
+app.get('/dashboard', (req, res) =>{
+    res.send('Dashboard');
+});
+
+
+
+
+
 
 
 
