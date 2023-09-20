@@ -114,69 +114,87 @@ const app = express();
 
 
 
-// Ruta que responde a cualquier tipo de solicitud (GET, POST, etc.) en '/info'
-app.all('/info', (req, res) =>{
-    // Envía un mensaje de respuesta que dice 'Información'
-    res.send('Información');
-})
+// // Ruta que responde a cualquier tipo de solicitud (GET, POST, etc.) en '/info'
+// app.all('/info', (req, res) =>{
+//     // Envía un mensaje de respuesta que dice 'Información'
+//     res.send('Información');
+// })
 
 
-// Ruta que responde a solicitudes GET en '/search'
-app.get('/search', (req, res) =>{ 
-    // Imprime el objeto 'query' que contiene los parámetros de la URL
-    console.log(req.query);
+// // Ruta que responde a solicitudes GET en '/search'
+// app.get('/search', (req, res) =>{ 
+//     // Imprime el objeto 'query' que contiene los parámetros de la URL
+//     console.log(req.query);
 
-    // Comprueba si el parámetro 'q' en el objeto 'query' es igual a 'javascript book'
-    if(req.query.q === 'javascript book'){
-        // Si es igual, envía un mensaje indicando una lista de libros
-        res.send('lista de libros');
-    } else {
-        // Si no es igual, envía un mensaje indicando que no se encontraron resultados
-        res.send('No se encontraron resultados');
-    }
-});
+//     // Comprueba si el parámetro 'q' en el objeto 'query' es igual a 'javascript book'
+//     if(req.query.q === 'javascript book'){
+//         // Si es igual, envía un mensaje indicando una lista de libros
+//         res.send('lista de libros');
+//     } else {
+//         // Si no es igual, envía un mensaje indicando que no se encontraron resultados
+//         res.send('No se encontraron resultados');
+//     }
+// });
 
 
 
-// Ruta que responde a solicitudes GET en '/hello/:username'
-app.get('/hello/:username', (req, res) =>{
+// // Ruta que responde a solicitudes GET en '/hello/:username'
+// app.get('/hello/:username', (req, res) =>{
     
 
-    // Envía una respuesta al cliente con un saludo personalizado
-    res.send(`Hello ${req.params.username.toUpperCase()}`);
-});
+//     // Envía una respuesta al cliente con un saludo personalizado
+//     res.send(`Hello ${req.params.username.toUpperCase()}`);
+// });
 
-// Ruta que responde a solicitudes GET en '/add/:x/:y'
-app.get('/add/:x/:y', (req, res) =>{
-    // Extrae los valores de 'x' e 'y' de los parámetros de la URL
-    const {x, y} = req.params
+// // Ruta que responde a solicitudes GET en '/add/:x/:y'
+// app.get('/add/:x/:y', (req, res) =>{
+//     // Extrae los valores de 'x' e 'y' de los parámetros de la URL
+//     const {x, y} = req.params
 
-    // Calcula la suma y envía una respuesta al cliente
-    res.send(`La suma es ${parseInt(x) + parseInt(y)}`);
-});
+//     // Calcula la suma y envía una respuesta al cliente
+//     res.send(`La suma es ${parseInt(x) + parseInt(y)}`);
+// });
 
-// Ruta que responde a solicitudes GET en '/users/:username/photo'
-app.get('/users/:username/photo', (req, res) =>{
-    // Imprime el nombre de usuario en la consola
-    console.log(req.params.username)
+// // Ruta que responde a solicitudes GET en '/users/:username/photo'
+// app.get('/users/:username/photo', (req, res) =>{
+//     // Imprime el nombre de usuario en la consola
+//     console.log(req.params.username)
 
-    // Si el nombre de usuario es 'ivan', envía el archivo 'javascript.png'
-    if (req.params.username === 'ivan'){
-        return res.sendFile('./javascript.png', {root: __dirname});
-    }
+//     // Si el nombre de usuario es 'ivan', envía el archivo 'javascript.png'
+//     if (req.params.username === 'ivan'){
+//         return res.sendFile('./javascript.png', {root: __dirname});
+//     }
 
-    // Si el nombre de usuario no es 'ivan', envía un mensaje indicando que el usuario no existe
-    res.send('No existe el usuario');
-});
+//     // Si el nombre de usuario no es 'ivan', envía un mensaje indicando que el usuario no existe
+//     res.send('No existe el usuario');
+// });
 
-// Ruta que responde a solicitudes GET en '/nombre/:nombre/age/:age'
-app.get('/nombre/:nombre/age/:age', (req, res) =>{
-    // Extrae el nombre y la edad de los parámetros de la URL
-    const {nombre, age} = req.params;
+// // Ruta que responde a solicitudes GET en '/nombre/:nombre/age/:age'
+// app.get('/nombre/:nombre/age/:age', (req, res) =>{
+//     // Extrae el nombre y la edad de los parámetros de la URL
+//     const {nombre, age} = req.params;
 
-    // Envía una respuesta al cliente con un mensaje personalizado
-    res.send(`Hola ${nombre}, tienes ${age} años`);
-});
+//     // Envía una respuesta al cliente con un mensaje personalizado
+//     res.send(`Hola ${nombre}, tienes ${age} años`);
+// });
+
+
+// // Middleware que se ejecuta para cada solicitud
+// app.use((req, res, next)=>{
+//     // Imprime la ruta y el método de la solicitud en la consola
+//     console.log(`ruta: ${req.url} metodo: ${req.method}`);
+//     // Llama a la siguiente función en la cadena de middleware
+//     next();
+// })
+// app.get('/profile', (req, res) =>{
+//     res.send('Profile');
+// });
+
+
+// app.all('/about', (req, res) =>{
+//     res.send('about page');
+// });
+
 
 
 app.listen("3000");
