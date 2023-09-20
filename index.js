@@ -113,48 +113,65 @@ const app = express();
 // });
 
 
-// // Ruta que responde a solicitudes GET en '/hello/:username'
-// app.get('/hello/:username', (req, res) =>{
-//     // Imprime el tipo de dato del parámetro 'username' en la consola
-//     console.log(typeof req.params.username);
-
-//     // Envía una respuesta al cliente con un saludo personalizado
-//     res.send(`Hello ${req.params.username.toUpperCase()}`);
-// });
-
-// // Ruta que responde a solicitudes GET en '/add/:x/:y'
-// app.get('/add/:x/:y', (req, res) =>{
-//     // Extrae los valores de 'x' e 'y' de los parámetros de la URL
-//     const {x, y} = req.params
-
-//     // Calcula la suma y envía una respuesta al cliente
-//     res.send(`La suma es ${parseInt(x) + parseInt(y)}`);
-// });
-
-// // Ruta que responde a solicitudes GET en '/users/:username/photo'
-// app.get('/users/:username/photo', (req, res) =>{
-//     // Imprime el nombre de usuario en la consola
-//     console.log(req.params.username)
-
-//     // Si el nombre de usuario es 'ivan', envía el archivo 'javascript.png'
-//     if (req.params.username === 'ivan'){
-//         return res.sendFile('./javascript.png', {root: __dirname});
-//     }
-
-//     // Si el nombre de usuario no es 'ivan', envía un mensaje indicando que el usuario no existe
-//     res.send('No existe el usuario');
-// });
-
-// // Ruta que responde a solicitudes GET en '/nombre/:nombre/age/:age'
-// app.get('/nombre/:nombre/age/:age', (req, res) =>{
-//     // Extrae el nombre y la edad de los parámetros de la URL
-//     const {nombre, age} = req.params;
-
-//     // Envía una respuesta al cliente con un mensaje personalizado
-//     res.send(`Hola ${nombre}, tienes ${age} años`);
-// });
 
 
+
+// Ruta que responde a solicitudes GET en '/search'
+app.get('/search', (req, res) =>{ 
+    // Imprime el objeto 'query' que contiene los parámetros de la URL
+    console.log(req.query);
+
+    // Comprueba si el parámetro 'q' en el objeto 'query' es igual a 'javascript book'
+    if(req.query.q === 'javascript book'){
+        // Si es igual, envía un mensaje indicando una lista de libros
+        res.send('lista de libros');
+    } else {
+        // Si no es igual, envía un mensaje indicando que no se encontraron resultados
+        res.send('No se encontraron resultados');
+    }
+});
+
+
+
+// Ruta que responde a solicitudes GET en '/hello/:username'
+app.get('/hello/:username', (req, res) =>{
+    
+
+    // Envía una respuesta al cliente con un saludo personalizado
+    res.send(`Hello ${req.params.username.toUpperCase()}`);
+});
+
+// Ruta que responde a solicitudes GET en '/add/:x/:y'
+app.get('/add/:x/:y', (req, res) =>{
+    // Extrae los valores de 'x' e 'y' de los parámetros de la URL
+    const {x, y} = req.params
+
+    // Calcula la suma y envía una respuesta al cliente
+    res.send(`La suma es ${parseInt(x) + parseInt(y)}`);
+});
+
+// Ruta que responde a solicitudes GET en '/users/:username/photo'
+app.get('/users/:username/photo', (req, res) =>{
+    // Imprime el nombre de usuario en la consola
+    console.log(req.params.username)
+
+    // Si el nombre de usuario es 'ivan', envía el archivo 'javascript.png'
+    if (req.params.username === 'ivan'){
+        return res.sendFile('./javascript.png', {root: __dirname});
+    }
+
+    // Si el nombre de usuario no es 'ivan', envía un mensaje indicando que el usuario no existe
+    res.send('No existe el usuario');
+});
+
+// Ruta que responde a solicitudes GET en '/nombre/:nombre/age/:age'
+app.get('/nombre/:nombre/age/:age', (req, res) =>{
+    // Extrae el nombre y la edad de los parámetros de la URL
+    const {nombre, age} = req.params;
+
+    // Envía una respuesta al cliente con un mensaje personalizado
+    res.send(`Hola ${nombre}, tienes ${age} años`);
+});
 
 
 app.listen("3000");
