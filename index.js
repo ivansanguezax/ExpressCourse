@@ -36,40 +36,61 @@
 // // Imprime un mensaje en la consola indicando que el servidor está escuchando en el puerto 3000
 // console.log(`Server at port ${2300}`);
 
-
 // ------------------------------------------
 
-
-
-
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.get('/products', (req, res) =>{
-    //query database
-    //validate data
-    //process data
+// app.get('/products', (req, res) =>{
+//     //query database
+//     //validate data
+//     //process data
 
-    res.send('Lista de productos');
-})
+//     res.send('Lista de productos');
+// })
 
-app.post('/products', (req, res) =>{
-    res.send('Creando productos');
-})
+// app.post('/products', (req, res) =>{
+//     res.send('Creando productos');
+// })
 
-app.put('/products', (req, res) =>{
-    res.send('Actualizando productos');
-})
+// app.put('/products', (req, res) =>{
+//     res.send('Actualizando productos');
+// })
 
-app.delete('/products', (req, res) =>{
-    res.send('Eliminando productos');
-})
+// app.delete('/products', (req, res) =>{
+//     res.send('Eliminando productos');
+// })
 
-app.patch('/products', (req, res) =>{
-    res.send('Actualizando una parte productos');
-})
+// app.patch('/products', (req, res) =>{
+//     res.send('Actualizando una parte productos');
+// })
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
+app.get("/miarchivo", (req, res) => {
+  res.sendFile("./javascript.png", {
+    root: __dirname,
+  });
+});
 
-app.listen('3000');
+app.get("/user", (req, res) => {
+  res.json({
+    name: "Ivan",
+    lastName: "Sangueza",
+    age: 25,
+    points: [1, 2, 3, 4, 5],
+    address: {
+      street: "Av. Siempre viva",
+      city: "Springfield",
+    },
+  });
+});
+
+app.get("/isAlive", (req, res) => {
+    res.sendStatus(204);
+  });
+
+app.listen("3000");
 console.log(`Server at port ${3000}`);
