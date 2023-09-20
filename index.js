@@ -39,6 +39,7 @@
 // ------------------------------------------
 
 const express = require("express");
+const { type } = require("os");
 const app = express();
 
 // app.get('/products', (req, res) =>{
@@ -65,32 +66,96 @@ const app = express();
 //     res.send('Actualizando una parte productos');
 // })
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 
-app.get("/miarchivo", (req, res) => {
-  res.sendFile("./javascript.png", {
-    root: __dirname,
-  });
-});
+// app.get("/miarchivo", (req, res) => {
+//   res.sendFile("./javascript.png", {
+//     root: __dirname,
+//   });
+// });
 
-app.get("/user", (req, res) => {
-  res.json({
-    name: "Ivan",
-    lastName: "Sangueza",
-    age: 25,
-    points: [1, 2, 3, 4, 5],
-    address: {
-      street: "Av. Siempre viva",
-      city: "Springfield",
-    },
-  });
-});
+// app.get("/user", (req, res) => {
+//   res.json({
+//     name: "Ivan",
+//     lastName: "Sangueza",
+//     age: 25,
+//     points: [1, 2, 3, 4, 5],
+//     address: {
+//       street: "Av. Siempre viva",
+//       city: "Springfield",
+//     },
+//   });
+// });
 
-app.get("/isAlive", (req, res) => {
-    res.sendStatus(204);
-  });
+// app.get("/isAlive", (req, res) => {
+//     res.sendStatus(204);
+//   });
+
+// // Configura Express para manejar solicitudes con cuerpo de texto
+// app.use(express.text());
+
+// // Configura Express para analizar solicitudes con formato JSON
+// app.use(express.json());
+
+// // Configura Express para analizar solicitudes con formato de datos codificados en URL
+// app.use(express.urlencoded({extended: false}));
+
+// // Define una ruta POST en '/user'
+// app.post('/user',(req, res) =>{
+
+//     // Imprime el cuerpo de la solicitud en la consola
+//     console.log(req.body);
+
+//     // Envía una respuesta al cliente indicando que se ha creado un nuevo usuario
+//     res.send('nuevo usuario creado');
+// });
+
+
+// // Ruta que responde a solicitudes GET en '/hello/:username'
+// app.get('/hello/:username', (req, res) =>{
+//     // Imprime el tipo de dato del parámetro 'username' en la consola
+//     console.log(typeof req.params.username);
+
+//     // Envía una respuesta al cliente con un saludo personalizado
+//     res.send(`Hello ${req.params.username.toUpperCase()}`);
+// });
+
+// // Ruta que responde a solicitudes GET en '/add/:x/:y'
+// app.get('/add/:x/:y', (req, res) =>{
+//     // Extrae los valores de 'x' e 'y' de los parámetros de la URL
+//     const {x, y} = req.params
+
+//     // Calcula la suma y envía una respuesta al cliente
+//     res.send(`La suma es ${parseInt(x) + parseInt(y)}`);
+// });
+
+// // Ruta que responde a solicitudes GET en '/users/:username/photo'
+// app.get('/users/:username/photo', (req, res) =>{
+//     // Imprime el nombre de usuario en la consola
+//     console.log(req.params.username)
+
+//     // Si el nombre de usuario es 'ivan', envía el archivo 'javascript.png'
+//     if (req.params.username === 'ivan'){
+//         return res.sendFile('./javascript.png', {root: __dirname});
+//     }
+
+//     // Si el nombre de usuario no es 'ivan', envía un mensaje indicando que el usuario no existe
+//     res.send('No existe el usuario');
+// });
+
+// // Ruta que responde a solicitudes GET en '/nombre/:nombre/age/:age'
+// app.get('/nombre/:nombre/age/:age', (req, res) =>{
+//     // Extrae el nombre y la edad de los parámetros de la URL
+//     const {nombre, age} = req.params;
+
+//     // Envía una respuesta al cliente con un mensaje personalizado
+//     res.send(`Hola ${nombre}, tienes ${age} años`);
+// });
+
+
+
 
 app.listen("3000");
 console.log(`Server at port ${3000}`);
