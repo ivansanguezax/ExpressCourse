@@ -114,6 +114,11 @@ const app = express();
 
 
 
+// Ruta que responde a cualquier tipo de solicitud (GET, POST, etc.) en '/info'
+app.all('/info', (req, res) =>{
+    // Envía un mensaje de respuesta que dice 'Información'
+    res.send('Información');
+})
 
 
 // Ruta que responde a solicitudes GET en '/search'
