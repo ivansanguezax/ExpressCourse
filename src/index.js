@@ -208,7 +208,44 @@
 //     res.send('Dashboard');
 // });
 
+
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+const path = require("path");
+
+app.use(morgan("dev")); 
+app.use(express.json());
+
+app.get('/node.txt', (req, res) =>{
+    res.send('este no es un archivo')
+});
+
+
+
+app.post('/profile', (req, res) =>{
+    console.log(req.body);
+    res.send('Profile');
+});
+app.all('/about', (req, res) =>{
+    res.send('about page');
+});
+
+
+// app.use((req, res, next)=>{
+//     if(req.query.login === 'ivan@gmail.com'){
+//         next();
+//     }else {
+//         res.send('No tienes permiso para acceder');
+//     }
+// })
+
+app.get('/dashboard', (req, res) =>{
+    res.send('Dashboard');
+});
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/uploads',express.static(path.join(__dirname, 'uploads')));
+
 app.listen("3000");
 console.log(`Server at port ${3000}`);
