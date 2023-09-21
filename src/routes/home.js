@@ -3,7 +3,10 @@ const {Router} = require('express');
 const router = Router()
 
 router.all('/about', (req, res) =>{
-    res.send('about page');
+    const title = 'mi pagina creada con express 2';
+
+
+    res.render('index.ejs', {title})
 });
 
 router.get('/dashboard', (req, res) =>{
