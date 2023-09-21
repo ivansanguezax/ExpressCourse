@@ -209,29 +209,6 @@
 // });
 
 
-const express = require("express");
-const app = express();
-const morgan = require("morgan");
-const path = require("path");
-
-app.use(morgan("dev")); 
-app.use(express.json());
-
-app.get('/node.txt', (req, res) =>{
-    res.send('este no es un archivo')
-});
-
-
-
-app.post('/profile', (req, res) =>{
-    console.log(req.body);
-    res.send('Profile');
-});
-app.all('/about', (req, res) =>{
-    res.send('about page');
-});
-
-
 // app.use((req, res, next)=>{
 //     if(req.query.login === 'ivan@gmail.com'){
 //         next();
@@ -240,9 +217,32 @@ app.all('/about', (req, res) =>{
 //     }
 // })
 
-app.get('/dashboard', (req, res) =>{
-    res.send('Dashboard');
-});
+// app.get('/node.txt', (req, res) =>{
+//     res.send('este no es un archivo')
+// });
+
+
+
+const express = require("express");
+const morgan = require("morgan");
+const path = require("path");
+
+const app = express();
+
+const HomeRoutes = require('./routes/home');
+const UserRoutes = require('./routes/users');
+
+app.set('case sensitive routing', true);
+app.set('app name', 'My Express App');
+app.set('port', 3000);
+
+
+app.use(morgan("dev")); 
+app.use(express.json());
+
+
+app.use(HomeRoutes)
+app.use(UserRoutes)
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/uploads',express.static(path.join(__dirname, 'uploads')));
