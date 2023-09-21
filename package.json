@@ -1,6 +1,25 @@
 {
   "dependencies": {
     "express": "^4.18.2",
-    "morgan": "^1.10.0"
-  }
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  },
+  "name": "expresscourse",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivansanguezax/ExpressCourse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivansanguezax/ExpressCourse/issues"
+  },
+  "homepage": "https://github.com/ivansanguezax/ExpressCourse#readme"
 }
